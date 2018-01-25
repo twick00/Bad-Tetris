@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+  }
+  td {
+    width: 10%;
+    position: relative;
+    background-color: hsla(208, 100%, 73%, 0.548);
+    border: 1px solid black;
+  }
+  td:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+  }
+  td .content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: gold;
+  }
