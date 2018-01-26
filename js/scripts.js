@@ -30,16 +30,17 @@ function moveGrid(x,y){
 }
 $(document).keydown(function(event) { //Thanks to https://stackoverflow.com/a/9310900 for explaining this.
     switch(event.which) {
+        case 65:
         case 37:moveGrid(-1,0);// left
 			
         break;
-
+        case 87:
         case 38:moveGrid(0,-1); // up
         break;
-
+        case 68:
         case 39:moveGrid(1,0);// right
         break;
-
+        case 83:
         case 40:moveGrid(0,1); // down
         break;
 
