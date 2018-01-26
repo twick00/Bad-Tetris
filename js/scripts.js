@@ -1,27 +1,27 @@
 
 function generateGrid(x,y) {
     for (var i = 1; i < y; i++) {
-        $("#play-grid").append("<tr>")
+        $("#play-grid").append("<tr>");
         for (var o = 1; o < x; o++) {
             $("tr:last").append(rowGen(o,i));
         }
-        $("#play-grid").append("</tr>")
+        $("#play-grid").append("</tr>");
     }
 }
 function rowGen(x,y) {
-    return "<td class=row-"+ y + x + ">" + y + x + "</td>"
+    return "<td class=row-"+ y + x + ">" + y + x + "</td>";
 }
 
 
 function main() {
+    shapeLoc.gridLoc();
+    alert("Use the arrow keys.");
     generateGrid(10,10);
     fillGrid();
 }
 $(document).ready(function() {
-    alert("Use the arrow keys.")
-    shapeLoc.gridLoc();
     main();
-})
+});
 function moveGrid(x,y){
 	shapeLoc.moveLoc[0] += x;
 	shapeLoc.moveLoc[1] += y;
@@ -34,7 +34,7 @@ $(document).keydown(function(event) { //Thanks to https://stackoverflow.com/a/93
 			
         break;
 
-        case 38:moveGrid(0,-1) // up
+        case 38:moveGrid(0,-1); // up
         break;
 
         case 39:moveGrid(1,0);// right
@@ -49,7 +49,7 @@ $(document).keydown(function(event) { //Thanks to https://stackoverflow.com/a/93
 });
 var shapeLoc = {
     //startArray:[[ [1,1],[1,2],[1,3],[1,4]], [ [2,1],[2,2],[2,3],[2,4] ], [ [3,1],[3,2],[3,3],[3,4] ],[[4,1],[4,2],[4,3],[4,4]] ], //(probably) MUST BE SQUARE
-	startArray:[[ [1,1],[1,2],[1,3],[1,4]], [ /*[2,1],[2,2],*/[2,3],/*[2,4]*/ ], [ /*[3,1],*/[3,2]/*,[3,3],[3,4]*/ ],[[4,1],[4,2],[4,3],[4,4]] ], //(probably) MUST BE SQUARE
+	startArray:[[ [1,1],[1,2],[1,3],/* [1,4] */], [ /* [2,1], */[2,2]/* ,[2,3],[2,4] */ ], [ /*[3,1],[3,2],[3,3],[3,4]*/ ]/* ,[[4,1],[4,2],[4,3],[4,4]]  */], //(probably) MUST BE SQUARE
     gridLoc: function() {
         var newLoc= [];
         for (var i = 0; i < this.startArray.length; i++) { //iterate through rows
