@@ -15,8 +15,10 @@ function rowGen(x,y) {
 
 function main() {
     generateGrid(10,10);
+    fillGrid();
 }
 $(document).ready(function() {
+    alert("Use the arrow keys.")
     shapeLoc.gridLoc();
     main();
 })
@@ -26,8 +28,8 @@ function moveGrid(x,y){
 	shapeLoc.gridLoc();
 	fillGrid();
 }
-$(document).keydown(function(e) {
-    switch(e.which) {
+$(document).keydown(function(event) { //Thanks to https://stackoverflow.com/a/9310900 for explaining this.
+    switch(event.which) {
         case 37:moveGrid(-1,0);// left
 			
         break;
@@ -43,7 +45,7 @@ $(document).keydown(function(e) {
 
         default: return; // exit this handler for other keys
     }
-    e.preventDefault(); // prevent the default action (scroll / move caret)
+    event.preventDefault(); // prevent the default action (scroll / move caret)
 });
 var shapeLoc = {
     //startArray:[[ [1,1],[1,2],[1,3],[1,4]], [ [2,1],[2,2],[2,3],[2,4] ], [ [3,1],[3,2],[3,3],[3,4] ],[[4,1],[4,2],[4,3],[4,4]] ], //(probably) MUST BE SQUARE
