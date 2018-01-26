@@ -15,7 +15,7 @@ function rowGen(x,y) {
 
 function main() {
     shapeLoc.gridLoc();
-    alert("Use the arrow keys.");
+    //alert("Use the arrow keys.");
     generateGrid(10,10);
     fillGrid();
 }
