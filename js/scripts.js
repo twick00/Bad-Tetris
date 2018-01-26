@@ -20,18 +20,25 @@ $(document).ready(function() {
     shapeLoc.gridLoc();
     main();
 })
+function moveGrid(x,y){
+	shapeLoc.moveLoc[0] += x;
+	shapeLoc.moveLoc[1] += y;
+	shapeLoc.gridLoc();
+	fillGrid();
+}
 $(document).keydown(function(e) {
     switch(e.which) {
-        case 37: // left
+        case 37:moveGrid(-1,0);// left
+			
         break;
 
-        case 38: // up
+        case 38:moveGrid(0,-1) // up
         break;
 
-        case 39: // right
+        case 39:moveGrid(1,0);// right
         break;
 
-        case 40: // down
+        case 40:moveGrid(0,1); // down
         break;
 
         default: return; // exit this handler for other keys
@@ -39,7 +46,8 @@ $(document).keydown(function(e) {
     e.preventDefault(); // prevent the default action (scroll / move caret)
 });
 var shapeLoc = {
-    startArray:[[ [1,1],[1,2],[1,3],[1,4]], [ [2,1],[2,2],[2,3],[2,4] ], [ [3,1],[3,2],[3,3],[3,4] ],[[4,1],[4,2],[4,3],[4,4]] ], //(probably) MUST BE SQUARE
+    //startArray:[[ [1,1],[1,2],[1,3],[1,4]], [ [2,1],[2,2],[2,3],[2,4] ], [ [3,1],[3,2],[3,3],[3,4] ],[[4,1],[4,2],[4,3],[4,4]] ], //(probably) MUST BE SQUARE
+	startArray:[[ [1,1],[1,2],[1,3],[1,4]], [ /*[2,1],[2,2],*/[2,3],/*[2,4]*/ ], [ /*[3,1],*/[3,2]/*,[3,3],[3,4]*/ ],[[4,1],[4,2],[4,3],[4,4]] ], //(probably) MUST BE SQUARE
     gridLoc: function() {
         var newLoc= [];
         for (var i = 0; i < this.startArray.length; i++) { //iterate through rows
@@ -54,8 +62,6 @@ var shapeLoc = {
                         if (u === 1) {
                             stringXY.push(this.startArray[i][o][u] + this.moveLoc[0] + this.currentLoc[0]);
                         }
-                        this.currentLoc[0] += this.moveLoc[0];
-                        this.currentLoc[1] += this.moveLoc[1]; 
                     }
                     newCol.push(stringXY);
                 
@@ -64,6 +70,8 @@ var shapeLoc = {
             newLoc.push(newRow);
         }
         this.gridAt = newLoc;
+		//this.currentLoc[0] += this.moveLoc[0];
+		//this.currentLoc[1] += this.moveLoc[1]; 
         return newLoc;
     },
     currentLoc:[0,0], //x, y
@@ -76,15 +84,16 @@ function fillGrid() {
         for (var i = 0; i < shapeLoc.gridAt.length; i++) {
             var temp = "";
             for (var o = 0; o < shapeLoc.gridAt[i].length; o++) {
-                temp = shapeLoc.gridAt[i][o][0].join('');
+                temp = shapeLoc.gridAt[i][o][0].concat().join('');
                 //console.log(temp);
                 fillThis.push(temp)
             }
         }
         console.log(fillThis)
+		$("*").removeClass("tetris-block");
         for (var u = 0; u < fillThis.length; u++) {
             $("td[class='row-"+fillThis[u]+"']").addClass("tetris-block");
-            console.log("test")
+
         }
         console.log(fillThis);
     //return fillThis;
