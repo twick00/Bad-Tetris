@@ -20,3 +20,7 @@ table {
     right: 0;
     background: gold;
   }
+
+.tetris-block {
+  background-color: #449d44;
+}
